@@ -1,0 +1,34 @@
+{
+  "name": "wangeditor-catalogue",
+  "version": "1.0.0",
+  "description": "基于wangeditor二次开发的文章标题目录组件",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "doc": "vue-styleguidist build",
+    "build": "npm run build:unpkg & npm run build:es & npm run build:umd",
+    "build:umd": "rollup --config rollup.config.js --format umd --file dist/wangeditor-catalogue.umd.js",
+    "build:es": "rollup --config rollup.config.js --format es --file dist/wangeditor-catalogue.esm.js",
+    "build:unpkg": "rollup --config rollup.config.js --format iife --file dist/wangeditor-catalogue.min.js"
+  },
+  "author": "longzai",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@types/lodash": "^4.14.188",
+    "less": "^4.1.3",
+    "minimist": "^1.2.7",
+    "rollup": "^3.2.5",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "rollup-plugin-vue": "^6.0.0",
+    "typescript": "^4.8.4",
+    "vue": "^3.2.41"
+  }
+}
