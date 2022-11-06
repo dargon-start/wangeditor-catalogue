@@ -30,5 +30,13 @@
     "rollup-plugin-vue": "^6.0.0",
     "typescript": "^4.8.4",
     "vue": "^3.2.41"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "import": "./dist/wangeditor-catalogue.min.js",
+    "require": "./dist/wangeditor-catalogue.min.js",
+    "default": "./dist/wangeditor-catalogue.min.js"
   }
 }

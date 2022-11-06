@@ -10,7 +10,7 @@
    </div>
  </template>
  <script lang="ts" setup>
- import {defineProps, ref, withDefaults, watch,onMounted } from "vue";
+ import {ref, withDefaults, watch,onMounted } from "vue";
  import * as _ from "lodash";
  const headerList = ref<HTMLUListElement>()
  const props = withDefaults(
