@@ -16,11 +16,13 @@
  const props = withDefaults(
    defineProps<{
      headers: any;
+     scrollContinerDom:HTMLElement,
+     scrollToFirstHeader:number
    }>(),
    {}
  );
  let isScroll = true;
- 
+ let scrollContiner = props.scrollContinerDom ? props.scrollContinerDom : document;
  
  //当前活跃标题
  const activeTitle = ref("");
@@ -72,7 +74,11 @@
      //获取元素的位置信息
      function getRect(ele: HTMLElement) {
        const params = ele.offsetTop;
-       window.scrollTo(0, params + 110);
+       if(props.scrollContinerDom){
+          props.scrollContinerDom.scrollTo(0, params + props.scrollToFirstHeader)
+       }else{
+          window.scrollTo(0, params + props.scrollToFirstHeader);
+       }
      }
      curHead && getRect(curHead);
    }
@@ -80,16 +86,16 @@
  
  let scrollTimer: any;
  //监听滚轮的滚动事件 实现标题跟随滚动
- document.addEventListener("scroll", function (e: any) {
+ scrollContiner.addEventListener("scroll", function (e: any) {
    isScroll = true;
    clearTimeout(scrollTimer)
    scrollTimer = setTimeout(() => {
-     let doe = document.documentElement || document.body;
+     let doe = props.scrollContinerDom ? props.scrollContinerDom : document.documentElement || document.body;
      const list = document.querySelectorAll<HTMLElement>(`.cata_list`);
- 
+    
      for (let i = 0; i < list.length; i++) {
        const curHead = document.querySelector<HTMLElement>(`#${list[i].id}`);
-       if (curHead!.offsetTop > doe.scrollTop && i > 0) {
+       if (curHead!.offsetTop + props.scrollToFirstHeader > doe.scrollTop && i > 0) {
          activeTitle.value = list[i - 1].id;
          break;
        }
