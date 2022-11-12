@@ -15,11 +15,15 @@
  const headerList = ref<HTMLUListElement>()
  const props = withDefaults(
    defineProps<{
-     headers: any;
-     scrollContinerDom:HTMLElement,
-     scrollToFirstHeader:number
+     headers: any; //header数组
+     scrollContinerDom:HTMLElement, //滚动元素
+     scrollToFirstHeader:number, //跟随滚动时，滚动条与标题距离差
+     clickDistance:number //点击标题滚动到相应标题滚动距离调整值
    }>(),
-   {}
+   {
+    scrollToFirstHeader:0,
+    clickDistance:0
+   }
  );
  let isScroll = true;
  let scrollContiner = props.scrollContinerDom ? props.scrollContinerDom : document;
@@ -75,9 +79,9 @@
      function getRect(ele: HTMLElement) {
        const params = ele.offsetTop;
        if(props.scrollContinerDom){
-          props.scrollContinerDom.scrollTo(0, params + props.scrollToFirstHeader)
+          props.scrollContinerDom.scrollTo(0, params + props.clickDistance)
        }else{
-          window.scrollTo(0, params + props.scrollToFirstHeader);
+          window.scrollTo(0, params + props.clickDistance);
        }
      }
      curHead && getRect(curHead);
