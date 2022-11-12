@@ -40,7 +40,6 @@ import 'wangeditor-catalogue/css';
  <catalogue :headers="headers" class="catelogue"></catalogue>
 
 
-
 //editor实例创建完成以后获取文章中的标题
 const handleCreated = (editor: IDomEditor) => {
   editorRef.value = editor; // 记录 editor 实例，重要！
@@ -48,6 +47,28 @@ const handleCreated = (editor: IDomEditor) => {
   headers.value = editor.getElemsByTypePrefix("header");
   console.log(headers.value,'ppppppppppppp');
 };
+```
+
+组件需要传递的props：
+
+1. headers : header数组
+2. scrollContinerDom : 产生滚动条的标签
+3. scrollToFirstHeader : 跟随滚动时，滚动条与标题距离差
+4. clickDistance : 点击标题滚动到相应标题滚动距离调整值
+
+```js
+ const props = withDefaults(
+   defineProps<{
+     headers: any; //header数组
+     scrollContinerDom:HTMLElement, //产生滚动条的标签
+     scrollToFirstHeader:number, //跟随滚动时，滚动条与标题距离差
+     clickDistance:number //点击标题滚动到相应标题滚动距离调整值
+   }>(),
+   {
+    scrollToFirstHeader:0,
+    clickDistance:0
+   }
+ );
 ```
 
 

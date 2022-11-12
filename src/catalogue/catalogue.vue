@@ -16,7 +16,7 @@
  const props = withDefaults(
    defineProps<{
      headers: any; //header数组
-     scrollContinerDom:HTMLElement, //滚动元素
+     scrollContinerDom:HTMLElement, //产生滚动条的标签
      scrollToFirstHeader:number, //跟随滚动时，滚动条与标题距离差
      clickDistance:number //点击标题滚动到相应标题滚动距离调整值
    }>(),
