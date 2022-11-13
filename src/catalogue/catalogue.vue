@@ -35,12 +35,13 @@
  let intersectionObserver:any = null;
  watch(activeTitle,()=>{
    console.log(isScroll);
-     //取消上一个的
+     //取消上一个的intersectionObserver监听
      intersectionObserver && activeDom && intersectionObserver.unobserve(activeDom);
  
      activeDom = headerList.value && headerList.value.querySelector(`#${activeTitle.value}`);
  
      intersectionObserver = new IntersectionObserver(function (entries) {
+      // 与可视区相交 isIntersecting = true 
        if (!entries[0].isIntersecting && isScroll) {
          // 获取活跃标题距离顶部的位置
          let Atop = activeDom && activeDom.offsetTop
@@ -96,7 +97,8 @@
    scrollTimer = setTimeout(() => {
      let doe = props.scrollContinerDom ? props.scrollContinerDom : document.documentElement || document.body;
      const list = document.querySelectorAll<HTMLElement>(`.cata_list`);
-    
+    /* 遍历每一个标题，比较标题距离顶部的距离和滚动条滚动的距离
+    如果遍历到第一个大于滚动条滚动的距离，那么该标题就是活跃标题 */
      for (let i = 0; i < list.length; i++) {
        const curHead = document.querySelector<HTMLElement>(`#${list[i].id}`);
        if (curHead!.offsetTop + props.scrollToFirstHeader > doe.scrollTop && i > 0) {

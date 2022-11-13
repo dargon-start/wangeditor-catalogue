@@ -40,6 +40,11 @@
     "src",
     "index.d.ts"
   ],
+  "keywords": [
+    "wangeditor",
+    "标题目录",
+    "wangeditor标题目录"
+  ],
   "exports": {
     ".": "./dist/wangeditor-catalogue.esm.js",
     "./css": "./dist/wangeditor-catalogue.esm.css"
